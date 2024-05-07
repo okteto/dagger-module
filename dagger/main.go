@@ -30,8 +30,9 @@ type Endpoint struct {
 }
 
 // Returns a container that has Okteto CLI with the correct context set
+
 // example usage:
-// dagger call set-context --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
+// dagger -m  call set-context --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
 func (m *OktetoDaggerModule) SetContext(context string, token string) *Container {
 	return dag.Container().
 		From("okteto/okteto").
@@ -40,7 +41,8 @@ func (m *OktetoDaggerModule) SetContext(context string, token string) *Container
 		WithExec([]string{"okteto", "ctx", "use", context})
 }
 
-// Deploys a preview environment in the specified okteto context
+// Deploys a preview environment in the specified Okteto context
+
 // example usage:
 // dagger call preview-deploy --repo=https://github.com/RinkiyaKeDad/okteto-dagger-sample --branch=name-change --pr=https://github.com/RinkiyaKeDad/okteto-dagger-sample/pull/1 --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
 func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
@@ -55,7 +57,7 @@ func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
 	// Token to be used to authenticate with the Okteto context
 	token string) (string, error) {
 	c := m.SetContext(context, token).WithExec([]string{
-		"okteto", "preview", "deploy", "--branch", branch, "--sourceUrl", pr, "--repository", repo, "--wait", branch,
+		"okteto", "preview", "deploy", "--branch", branch, "--sourceUrl", pr, "--repository", repo, "--wait", strings.ToLower(branch),
 	}).WithExec([]string{
 		"okteto", "preview", "endpoints", branch, "--output=json",
 	})
@@ -87,7 +89,8 @@ func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
 	return allURLs, nil
 }
 
-// Destorys a preview environment at the specified okteto context
+// Destorys a preview environment at the specified Okteto context
+
 // example usage:
 // dagger call preview-destroy --branch=name-change --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
 func (m *OktetoDaggerModule) PreviewDestroy(ctx context.Context,
