@@ -59,7 +59,7 @@ func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
 	c := m.SetContext(context, token).WithExec([]string{
 		"okteto", "preview", "deploy", "--branch", branch, "--sourceUrl", pr, "--repository", repo, "--wait", strings.ToLower(branch),
 	}).WithExec([]string{
-		"okteto", "preview", "endpoints", branch, "--output=json",
+		"okteto", "preview", "endpoints", strings.ToLower(branch), "--output=json",
 	})
 
 	endpointsOut, err := c.Stdout(ctx)
