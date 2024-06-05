@@ -101,7 +101,7 @@ func (m *OktetoDaggerModule) PreviewDestroy(ctx context.Context,
 	// Token to be used to authenticate with the Okteto context
 	token string) (string, error) {
 	c := m.SetContext(context, token).WithExec([]string{
-		"okteto", "preview", "destroy", branch,
+		"okteto", "preview", "destroy", strings.ToLower(branch), "--wait=false",
 	})
 	destoryOut, err := c.Stdout(ctx)
 	if err != nil {
