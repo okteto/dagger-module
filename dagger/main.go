@@ -77,7 +77,7 @@ func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
 	return allURLs, nil
 }
 
-// Destorys a preview environment at the specified Okteto context
+// Destroys a preview environment at the specified Okteto context
 
 // example usage:
 // dagger call preview-destroy --branch=name-change --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
