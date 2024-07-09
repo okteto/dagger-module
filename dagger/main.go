@@ -1,16 +1,4 @@
-// A generated module for OktetoDaggerModule functions
-//
-// This module has been generated via dagger init and serves as a reference to
-// basic module structure as you get started with Dagger.
-//
-// Two functions have been pre-created. You can modify, delete, or add to them,
-// as needed. They demonstrate usage of arguments and return types using simple
-// echo and grep commands. The functions can be called from the dagger CLI or
-// from one of the SDKs.
-//
-// The first line in this comment block is a short description line and the
-// rest is a long description with more detail on the module's purpose or usage,
-// if appropriate. All modules should have a short description.
+// Okteto CLI and preview environment functions
 
 package main
 
@@ -89,7 +77,7 @@ func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
 	return allURLs, nil
 }
 
-// Destorys a preview environment at the specified Okteto context
+// Destroys a preview environment at the specified Okteto context
 
 // example usage:
 // dagger call preview-destroy --branch=name-change --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
