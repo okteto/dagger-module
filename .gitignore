@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+/dagger.gen.go
+/internal/dagger
+/internal/querybuilder
+/internal/telemetry
