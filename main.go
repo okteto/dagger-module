@@ -92,9 +92,9 @@ func (m *OktetoDaggerModule) PreviewDestroy(ctx context.Context,
 	c := m.SetContext(context, token).WithExec([]string{
 		"okteto", "preview", "destroy", strings.ToLower(branch), "--wait=false",
 	})
-	destoryOut, err := c.Stdout(ctx)
+	destroyOut, err := c.Stdout(ctx)
 	if err != nil {
 		return "", err
 	}
-	return destoryOut, nil
+	return destroyOut, nil
 }
