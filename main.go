@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"okteto-dagger-module/internal/dagger"
 	"strings"
 )
 
@@ -21,7 +22,7 @@ type Endpoint struct {
 
 // example usage:
 // dagger -m  call set-context --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
-func (m *OktetoDaggerModule) SetContext(context string, token string) *Container {
+func (m *OktetoDaggerModule) SetContext(context string, token string) *dagger.Container {
 	return dag.Container().
 		From("okteto/okteto").
 		WithEnvVariable("OKTETO_TOKEN", token).
@@ -91,9 +92,9 @@ func (m *OktetoDaggerModule) PreviewDestroy(ctx context.Context,
 	c := m.SetContext(context, token).WithExec([]string{
 		"okteto", "preview", "destroy", strings.ToLower(branch), "--wait=false",
 	})
-	destoryOut, err := c.Stdout(ctx)
+	destroyOut, err := c.Stdout(ctx)
 	if err != nil {
 		return "", err
 	}
-	return destoryOut, nil
+	return destroyOut, nil
 }
