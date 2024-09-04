@@ -1,4 +1,6 @@
-// Okteto CLI and preview environment functions
+// Spin up Preview Environments in Okteto with the help of this Dagger module.
+// Preview environments give you a sharable URL for each pull request made so you and everyone on your team can view the changes deployed before they get merged
+// Read more here: https://www.okteto.com/preview-environments/
 
 package main
 
