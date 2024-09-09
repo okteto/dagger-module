@@ -20,10 +20,11 @@ type Endpoint struct {
 	Private bool   `json:"private"`
 }
 
-// Returns a container that has Okteto CLI with the correct context set
 
 // example usage:
 // dagger -m  call set-context --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
+
+// Returns a container that has Okteto CLI with the correct context set
 func (m *OktetoDaggerModule) SetContext(context string, token string) *dagger.Container {
 	return dag.Container().
 		From("okteto/okteto").
@@ -32,10 +33,11 @@ func (m *OktetoDaggerModule) SetContext(context string, token string) *dagger.Co
 		WithExec([]string{"okteto", "ctx", "use", context})
 }
 
-// Deploys a preview environment in the specified Okteto context
 
 // example usage:
 // dagger call preview-deploy --repo=https://github.com/RinkiyaKeDad/okteto-dagger-sample --branch=name-change --pr=https://github.com/RinkiyaKeDad/okteto-dagger-sample/pull/1 --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
+
+// Deploys a preview environment in the specified Okteto context
 func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
 	// Repo to deploy
 	repo string,
@@ -80,10 +82,11 @@ func (m *OktetoDaggerModule) PreviewDeploy(ctx context.Context,
 	return allURLs, nil
 }
 
-// Destroys a preview environment at the specified Okteto context
 
 // example usage:
 // dagger call preview-destroy --branch=name-change --context=yourinstance.okteto.com --token=$OKTETO_TOKEN
+
+// Destroys a preview environment at the specified Okteto context
 func (m *OktetoDaggerModule) PreviewDestroy(ctx context.Context,
 	// Branch to deploy (to be used as the name for the preview env)
 	branch string,
